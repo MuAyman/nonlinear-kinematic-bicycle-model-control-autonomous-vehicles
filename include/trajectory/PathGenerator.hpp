@@ -1,22 +1,28 @@
 #pragma once
-
 #include <vector>
 #include <cmath>
 #include <spline.h>
 #include "../types.hpp"
+#include <iostream>
+#include <fstream>
+
 
 /*
     PathGenerator
     -------------
-    Responsibilities:
-    - Convert discrete waypoints (x,y) into a continuous geometric path
-    - Parameterize the path by cumulative distance s
-    - Provide position, heading, and curvature at any s
+    Generates a smooth path using cubic splines from a set of waypoints.
 
-    Non-responsibilities:
-    - No vehicle state
-    - No controller logic
-    - No time or velocity
+    Features:
+    - Generates waypoints along a parametric path with curves and turns.
+    - Builds cubic splines x(s) and y(s) from the waypoints.
+    - Evaluates position, heading, and curvature at any path parameter s.
+
+    Usage:
+    - Instantiate with desired path length and waypoint spacing.
+    - Call evaluate(s_query) to get PathPoint at specified s.
+
+    Note:
+    - Cubic splines ensure continuity of position, heading, and curvature.
 */
 class PathGenerator
 {
@@ -25,50 +31,121 @@ public:
     PathGenerator(double pathLength = 100.0, double pointsSpacing = 0.5)
     {
         generateWaypoint(pathLength, pointsSpacing); // generate waypoints
-        build(); // build splines from waypoints
+        build();                                     // build splines from waypoints
     }
 
-    /*
-        evaluate()
-        ----------
-        Evaluate the path at a given progress s.
+    // Evaluates x(s), y(s), heading ψ(s), and curvature κ(s) at given s_query.
+    PathPoint evaluate(double s_query) const
+    {
+        // Clamp s to the valid path interval
+        double s = std::clamp(s_query, 0.0, s_end_);
 
-        Input:
-        - s_query: path coordinate (distance-like parameter)
+        PathPoint p;
 
-        Output:
-        - PathPoint containing x, y, heading, curvature
-    */
-    PathPoint evaluate(double s_query) const;
+        // Position from splines
+        p.x = spline_x_(s);
+        p.y = spline_y_(s);
 
-    /*
-        getPathLength()
-        ---------------
-        Returns the maximum value of s (end of path).
-    */
-    double getPathLength() const;
+        // First derivatives with respect to s for heading calculation
+        double dx_ds = spline_x_.deriv(1, s);
+        double dy_ds = spline_y_.deriv(1, s);
+
+        // Heading ψ(s) is the angle of the tangent vector.
+        p.heading = std::atan2(dy_ds, dx_ds);
+
+        // Second derivatives with respect to s for curvature calculation
+        double d2x_ds2 = spline_x_.deriv(2, s);
+        double d2y_ds2 = spline_y_.deriv(2, s);
+
+        /*
+            Curvature formula:
+
+                        x' y'' - y' x''
+            κ(s) = -------------------------
+                    (x'^2 + y'^2)^(3/2)
+        */
+        double numerator = dx_ds * d2y_ds2 - dy_ds * d2x_ds2;
+        double denominator = std::pow(dx_ds * dx_ds + dy_ds * dy_ds, 1.5);
+
+        if (denominator < 1e-6)
+            p.curvature = 0.0;
+        else
+            p.curvature = numerator / denominator;
+
+        return p;
+    }
+
+    // Returns total length of the path (maximum s).
+    double getPathLength() const
+    {
+        return s_end_;
+    }
 
 protected:
-    /*
-        generateWaypoint()
-        ------------------
-        Generates a set of waypoints and saves them to "waypoints.csv".
+    // Generates waypoints along a parametric path with curves and turns.
+    void generateWaypoint(double pathLength = 100.0, double pointsSpacing = 0.5)
+    {
+        // Output file
+        std::ofstream file("waypoints.csv");
+        if (!file.is_open())
+            std::cerr << "Error opening file!" << std::endl;
 
-        Inputs:
-        - path_length: total length of the path in meters, defult 100m
-        - points_spacing: spacing between consecutive waypoints in meters, default 0.5m
+        file << "x,y\n"; // CSV header
 
-        Output:
-        - Populates the internal waypoints vector
-    */
-    void generateWaypoint(double pathLength = 100.0, double pointsSpacing = 0.5);
+        int N = static_cast<int>(pathLength / pointsSpacing);
 
-    /*
-        build()
-        -------
-        Builds cubic splines x(s) and y(s) from waypoints x,y.
-    */
-    void build();
+        // Generate parametric path
+        for (int i = 0; i <= N; ++i)
+        {
+            double s = i * pointsSpacing; // path parameter
+
+            // Generate x as a steadily increasing value
+            double x = s;
+
+            // Generate y as combination of sines to create curves and turns
+            // Wide turn: small frequency, small amplitude
+            // Sharp turn: higher frequency, higher amplitude
+            double y = 50.0 * sin(0.05 * s)  // wide gentle curve
+                       + 8.0 * sin(0.2 * s); // sharper local turn
+
+            waypoints.push_back({x, y});
+            file << x << "," << y << "\n";
+        }
+        file.close();
+    };
+
+    // Builds cubic splines x(s) and y(s) from waypoints x,y.
+    void build()
+    {
+        std::vector<double> xs;
+        std::vector<double> ys;
+        for (const auto &wp : waypoints)
+        {
+            xs.push_back(wp.x);
+            ys.push_back(wp.y);
+        }
+
+        // Reset internal data
+        s_.clear();
+
+        // Compute cumulative arc-length parameter s for each waypoint
+        // s[i] = s[i-1] + distance between waypoints i and i-1
+        s_.push_back(0.0);
+        for (size_t i = 1; i < xs.size(); ++i)
+        {
+            double dx = xs[i] - xs[i - 1];
+            double dy = ys[i] - ys[i - 1];
+            double ds = std::sqrt(dx * dx + dy * dy);
+            s_.push_back(s_.back() + ds);
+        }
+
+        // Store total path length
+        s_end_ = s_.back();
+
+        // Create cubic splines for x(s) and y(s)
+        spline_x_.set_points(s_, xs);
+        spline_y_.set_points(s_, ys);
+    }
 
 private:
     std::vector<Waypoint> waypoints; // generated discrete waypoints

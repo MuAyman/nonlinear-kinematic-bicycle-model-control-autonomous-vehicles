@@ -1,8 +1,8 @@
 // #pragma once
 #include "../include/types.hpp"
 #include "../include/models/KinematicsBicylceModel.hpp"
-#include "models/KinematicsBicylceModel.cpp"
-#include "trajectory/PathGenerator.cpp"
+// #include "models/KinematicsBicylceModel.cpp"
+// #include "trajectory/PathGenerator.cpp"
 #include "../include/trajectory/ReferenceManager.hpp"
 #include "../include/control/pure_pursuit.hpp"
 #include "../include/control/p_controller.hpp"
@@ -46,8 +46,14 @@ int main()
 
     for (int i = 0; i < 3000; ++i)
     {
-        // Get lookahead point at specified distance ahead on the path
-        Waypoint XYErrorVehicleFrame = ref_manager.calculateXYErrorVehicleFrame(lookahead_distance, current_state);
+        // Get lookahead point in global frame at specified distance ahead on the path
+        states errorGlobalFrame = ref_manager.calculateErrorGlobalFrame(current_state, lookahead_distance);
+        
+        // Transform error to vehicle frame
+        ref_manager.errorGlobaltoVehicleFrame(errorGlobalFrame, current_state);
+
+        // Create Waypoint for Pure Pursuit controller
+        Waypoint XYErrorVehicleFrame{errorGlobalFrame.x, errorGlobalFrame.y};
 
         // Compute desired steering angle using Pure Pursuit to lookahead point
         double desired_steering_angle = pp_controller.computeSteeringAngle(current_state, XYErrorVehicleFrame);

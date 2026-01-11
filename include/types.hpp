@@ -1,4 +1,5 @@
 #pragma once
+#include <cmath>
 
 // Struct to store the vehicle states
 struct states
@@ -14,6 +15,17 @@ struct inputs
 {
     double velocity;     // m/s
     double steeringRate; // rad/s
+};
+
+struct limits
+{
+    // Define limits
+    const double max_velocity = 30.0;            // Maximum velocity in m/s
+    const double min_velocity = -10.0;           // Minimum velocity in m/s (reverse)
+    const double max_steering_rate = 0.5;        // Maximum steering rate in rad/s
+    const double min_steering_rate = -0.5;       // Minimum steering rate in rad/s
+    const double max_steering_angle = M_PI / 4;  // Maximum steering angle 45 degrees in radians
+    const double min_steering_angle = -M_PI / 4; // Minimum steering angle -45 degrees in radians
 };
 
 // Struct to store waypoints x,y in meters
