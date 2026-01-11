@@ -20,15 +20,19 @@ states KinematicsBicycleModel::step(const states &current_state, const inputs &c
     // Update steering angle
     steeringAngle += steeringRate * dt;
 
-    // Kinematic bicycle model equations (Jacobian linearization + Forward Euler discretization)
-    next_state.x = x + (-sin(heading) * heading + cos(heading)) * velocity * dt;
-    next_state.y = y + (cos(heading) * heading + sin(heading)) * velocity * dt;
-    next_state.heading = heading + ((steeringAngle / (wheelbase * pow(cos(steeringAngle), 2))) + tan(steeringAngle) / wheelbase) * velocity * dt;
+    // Kinematic bicycle model (standard form with Forward Euler discretization)
+    // ẋ = v * cos(ψ)
+    // ẏ = v * sin(ψ)
+    // ψ̇ = v * tan(δ) / L
+    next_state.x = x + velocity * cos(heading) * dt;
+    next_state.y = y + velocity * sin(heading) * dt;
+    next_state.heading = heading + velocity * tan(steeringAngle) / wheelbase * dt;
     next_state.steeringAngle = steeringAngle;
 
     return next_state;
 };
 
+// Imposes limits on velocity and steering rate
 void KinematicsBicycleModel::imposelimits(states &current_state, inputs &control_input)
 {
 
@@ -40,35 +44,22 @@ void KinematicsBicycleModel::imposelimits(states &current_state, inputs &control
 
     // Check and limit velocity
     if (control_input.velocity > max_velocity)
-    {
         control_input.velocity = max_velocity;
-    }
     else if (control_input.velocity < min_velocity)
-    {
         control_input.velocity = min_velocity;
-    }
 
     // Check and limit steering rate
     if (control_input.steeringRate > max_steering_rate)
-    {
         control_input.steeringRate = max_steering_rate;
-    }
     else if (control_input.steeringRate < min_steering_rate)
-    {
         control_input.steeringRate = min_steering_rate;
-    }
-    
 
     // limit the steering angle & heading within physical constraints
     const double max_steering_angle = M_PI / 4;  // 45 degrees in radians
     const double min_steering_angle = -M_PI / 4; // -45 degrees in radians
 
     if (current_state.steeringAngle > max_steering_angle)
-    {
         current_state.steeringAngle = max_steering_angle;
-    }
     else if (current_state.steeringAngle < min_steering_angle)
-    {
         current_state.steeringAngle = min_steering_angle;
-    }
 }

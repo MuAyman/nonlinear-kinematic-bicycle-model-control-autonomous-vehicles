@@ -6,7 +6,7 @@
 #include <vector>
 #include <cmath>
 
-void PathGenerator::generateWaypoint(double path_length = 100.0, double points_spacing = 0.5)
+void PathGenerator::generateWaypoint(double path_length, double points_spacing)
 {
 
     // Output file
@@ -29,8 +29,8 @@ void PathGenerator::generateWaypoint(double path_length = 100.0, double points_s
         // Generate y as combination of sines to create curves and turns
         // Wide turn: small frequency, small amplitude
         // Sharp turn: higher frequency, higher amplitude
-        double y = 5.0 * sin(0.05 * s)   // wide gentle curve
-                   + 2.0 * sin(0.2 * s); // sharper local turn
+        double y = 50.0 * sin(0.05 * s)   // wide gentle curve
+                   + 8.0 * sin(0.2 * s); // sharper local turn
 
         waypoints.push_back({x, y});
         file << x << "," << y << "\n";
