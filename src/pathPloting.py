@@ -5,11 +5,11 @@ import matplotlib.pyplot as plt
 # =========================
 # Physical limits
 # =========================
-MAX_VELOCITY = 30.0      # m/s
-MIN_VELOCITY = -10.0     # m/s
+MAX_VELOCITY = 30.0
+MIN_VELOCITY = -10.0
 
-MAX_STEERING_RATE_RAD = 0.5   # rad/s
-MIN_STEERING_RATE_RAD = -0.5  # rad/s
+MAX_STEERING_RATE_RAD = 0.5
+MIN_STEERING_RATE_RAD = -0.5
 
 MAX_STEERING_ANGLE_RAD = np.pi / 4
 MIN_STEERING_ANGLE_RAD = -np.pi / 4
@@ -57,37 +57,39 @@ wp_y = wp["y"].values
 # Tracking error computation
 # =========================
 tracking_error = np.zeros(len(x))
-
 for i in range(len(x)):
     dx = wp_x - x[i]
     dy = wp_y - y[i]
     tracking_error[i] = np.sqrt(np.min(dx**2 + dy**2))
 
 # =========================
-# Plotting
+# FIGURE 1: Path tracking (XY only)
+# =========================
+plt.figure(figsize=(8, 8))
+plt.plot(wp_x, wp_y, "k--", linewidth=2, label="Waypoints")
+plt.plot(x, y, "b", linewidth=2, label="Vehicle Path")
+plt.scatter(x[0], y[0], c="green", s=80, label="Start")
+plt.scatter(x[-1], y[-1], c="red", s=80, label="End")
+
+plt.xlabel("x [m]")
+plt.ylabel("y [m]")
+plt.title("Path Tracking (XY)")
+plt.axis("equal")
+plt.grid(True)
+plt.legend()
+plt.tight_layout()
+plt.show()
+
+# =========================
+# FIGURE 2: Controller behavior dashboard
 # =========================
 fig, axs = plt.subplots(3, 2, figsize=(16, 14))
-fig.suptitle("Controller Behavior Visualization Dashboard", fontsize=16)
+fig.suptitle("Controller Behavior – Time-Domain Analysis", fontsize=16)
 
 # -------------------------
-# 1. Path tracking (XY)
+# Heading vs time
 # -------------------------
 ax = axs[0, 0]
-ax.plot(wp_x, wp_y, "k--", linewidth=2, label="Waypoints")
-ax.plot(x, y, "b", linewidth=2, label="Vehicle Path")
-ax.scatter(x[0], y[0], c="green", s=80, label="Start")
-ax.scatter(x[-1], y[-1], c="red", s=80, label="End")
-ax.set_xlabel("x [m]")
-ax.set_ylabel("y [m]")
-ax.set_title("Path Tracking (XY)")
-ax.axis("equal")
-ax.grid(True)
-ax.legend()
-
-# -------------------------
-# 2. Heading vs time
-# -------------------------
-ax = axs[0, 1]
 ax.plot(t, psi_deg, linewidth=2)
 ax.set_xlabel("Time [s]")
 ax.set_ylabel("Heading ψ [deg]")
@@ -95,9 +97,9 @@ ax.set_title("Heading vs Time")
 ax.grid(True)
 
 # -------------------------
-# 3. Steering angle vs time
+# Steering angle vs time
 # -------------------------
-ax = axs[1, 0]
+ax = axs[0, 1]
 ax.plot(t, delta_deg, linewidth=2, label="Steering angle")
 ax.axhline(MAX_STEERING_ANGLE_DEG, color="red", linestyle="--", label="Steering limits")
 ax.axhline(MIN_STEERING_ANGLE_DEG, color="red", linestyle="--")
@@ -108,9 +110,9 @@ ax.grid(True)
 ax.legend()
 
 # -------------------------
-# 4. Steering rate vs time
+# Steering rate vs time
 # -------------------------
-ax = axs[1, 1]
+ax = axs[1, 0]
 ax.plot(t, delta_dot_deg, linewidth=2, label="Steering rate")
 ax.axhline(MAX_STEERING_RATE_DEG, color="red", linestyle="--", label="Steering-rate limits")
 ax.axhline(MIN_STEERING_RATE_DEG, color="red", linestyle="--")
@@ -121,9 +123,9 @@ ax.grid(True)
 ax.legend()
 
 # -------------------------
-# 5. Velocity vs time
+# Velocity vs time
 # -------------------------
-ax = axs[2, 0]
+ax = axs[1, 1]
 ax.plot(t, v, linewidth=2, label="Velocity")
 ax.axhline(MAX_VELOCITY, color="red", linestyle="--", label="Velocity limits")
 ax.axhline(MIN_VELOCITY, color="red", linestyle="--")
@@ -134,14 +136,17 @@ ax.grid(True)
 ax.legend()
 
 # -------------------------
-# 6. Tracking error vs time
+# Tracking error vs time
 # -------------------------
-ax = axs[2, 1]
+ax = axs[2, 0]
 ax.plot(t, tracking_error, linewidth=2)
 ax.set_xlabel("Time [s]")
 ax.set_ylabel("Tracking Error [m]")
 ax.set_title("Tracking Error vs Time")
 ax.grid(True)
 
-plt.tight_layout(rect=[0, 0, 1, 0.96])
+# Empty subplot for layout balance
+axs[2, 1].axis("off")
+
+plt.tight_layout(rect=[0, 0, 1, 0.95])
 plt.show()

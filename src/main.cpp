@@ -23,7 +23,7 @@ int main()
     double pointsSpacing = 0.5; // spacing between waypoints in meters
 
     // Controller parameters
-    double lookahead_distance = 1.0; // lookahead distance in meters
+    double lookahead_distance = 0.5; // lookahead distance in meters
     double kp_steering = 2;          // proportional gain for steering rate
     double kp_velocity = 0.5;        // proportional gain for velocity
 
@@ -44,7 +44,7 @@ int main()
     std::ofstream file("simulation.csv");
     file << "t,x,y,psi,delta,v,delta_dot\n";
 
-    for (int i = 0; i < 2000; ++i)
+    for (int i = 0; i < 3000; ++i)
     {
         // Get lookahead point at specified distance ahead on the path
         Waypoint XYErrorVehicleFrame = ref_manager.calculateXYErrorVehicleFrame(lookahead_distance, current_state);
@@ -63,9 +63,6 @@ int main()
         // Apply limits and step the model
         model.imposelimits(current_state, control_input);
         current_state = model.step(current_state, control_input, dt);
-
-        // Advance path progress
-        // ref_manager.advancePathProgress();
 
         // Save data to file
         file << (i + 1) * dt
