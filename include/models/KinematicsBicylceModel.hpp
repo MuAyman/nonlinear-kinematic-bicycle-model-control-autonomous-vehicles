@@ -29,6 +29,12 @@ public:
         next_state.heading = heading + velocity * tan(steeringAngle) / wheelbase_ * dt;
         next_state.steeringAngle = steeringAngle;
 
+        // // Kinematic bicycle model equations (Jacobian linearization + Forward Euler discretization)
+        // next_state.x = x + (-sin(heading) * heading + cos(heading)) * velocity * dt;
+        // next_state.y = y + (cos(heading) * heading + sin(heading)) * velocity * dt;
+        // next_state.heading = heading + ((steeringAngle / (wheelbase_ * pow(cos(steeringAngle), 2))) + tan(steeringAngle) / wheelbase_) * velocity * dt;
+        // next_state.steeringAngle = steeringAngle;
+
         return next_state;
     };
 
@@ -53,6 +59,18 @@ public:
             current_state.steeringAngle = vehicle_limits.max_steering_angle;
         else if (current_state.steeringAngle < vehicle_limits.min_steering_angle)
             current_state.steeringAngle = vehicle_limits.min_steering_angle;
+
+        // Avoid very small values of velocity and steering rate at the end of path
+        // Prevent that abs min value to be assigned at the beginning of the motion
+        // if (std::abs(current_state.x) > 0.1 || std::abs(current_state.y) > 0.1)
+        // {
+        //     // Set to zero if below absolute minimum thresholds
+        //     if (std::abs(control_input.velocity) < vehicle_limits.abs_min_velocity)
+        //         control_input.velocity = 0.0;
+        //     // Set to zero if below absolute minimum thresholds
+        //     if (std::abs(control_input.steeringRate) < vehicle_limits.abs_min_steering_rate)
+        //         control_input.steeringRate = 0.0;
+        // }
     }
 
 private:

@@ -86,7 +86,7 @@ protected:
     void generateWaypoint(double pathLength = 100.0, double pointsSpacing = 0.5)
     {
         // Output file
-        std::ofstream file("waypoints.csv");
+        std::ofstream file("visualization/waypoints.csv");
         if (!file.is_open())
             std::cerr << "Error opening file!" << std::endl;
 
@@ -107,6 +107,10 @@ protected:
             // Sharp turn: higher frequency, higher amplitude
             double y = 50.0 * sin(0.05 * s)  // wide gentle curve
                        + 8.0 * sin(0.2 * s); // sharper local turn
+
+            // path for testing a longtudinal & lateral controller
+            // double y = 50.0 * sin(0.05 * s)  // wide gentle curve
+            //            + 15.0 * sin(0.2 * s); // sharper local turn
 
             waypoints.push_back({x, y});
             file << x << "," << y << "\n";

@@ -5,8 +5,8 @@ import matplotlib.pyplot as plt
 # =========================
 # Physical limits
 # =========================
-MAX_VELOCITY = 30.0
-MIN_VELOCITY = -10.0
+MAX_VELOCITY = 15.0
+MIN_VELOCITY = -5.0
 
 MAX_STEERING_RATE_RAD = 0.5
 MIN_STEERING_RATE_RAD = -0.5
@@ -24,8 +24,8 @@ MIN_STEERING_ANGLE_DEG = MIN_STEERING_ANGLE_RAD * RAD2DEG
 # =========================
 # Load data
 # =========================
-sim = pd.read_csv("src/simulation.csv")
-wp = pd.read_csv("src/waypoints.csv")
+sim = pd.read_csv("src/visualization/simulation.csv")
+wp = pd.read_csv("src/visualization/waypoints.csv")
 
 required_sim_cols = {"t", "x", "y", "psi", "delta", "v", "delta_dot"}
 required_wp_cols = {"x", "y"}
@@ -91,7 +91,7 @@ fig.suptitle("Controller Behavior – Time-Domain Analysis", fontsize=16)
 # -------------------------
 ax = axs[0, 0]
 ax.plot(t, psi_deg, linewidth=2)
-ax.set_xlabel("Time [s]")
+# ax.set_xlabel("Time [s]")
 ax.set_ylabel("Heading ψ [deg]")
 ax.set_title("Heading vs Time")
 ax.grid(True)
@@ -103,7 +103,7 @@ ax = axs[0, 1]
 ax.plot(t, delta_deg, linewidth=2, label="Steering angle")
 ax.axhline(MAX_STEERING_ANGLE_DEG, color="red", linestyle="--", label="Steering limits")
 ax.axhline(MIN_STEERING_ANGLE_DEG, color="red", linestyle="--")
-ax.set_xlabel("Time [s]")
+# ax.set_xlabel("Time [s]")
 ax.set_ylabel("Steering angle δ [deg]")
 ax.set_title("Steering Angle vs Time")
 ax.grid(True)
@@ -116,7 +116,7 @@ ax = axs[1, 0]
 ax.plot(t, delta_dot_deg, linewidth=2, label="Steering rate")
 ax.axhline(MAX_STEERING_RATE_DEG, color="red", linestyle="--", label="Steering-rate limits")
 ax.axhline(MIN_STEERING_RATE_DEG, color="red", linestyle="--")
-ax.set_xlabel("Time [s]")
+# ax.set_xlabel("Time [s]")
 ax.set_ylabel("Steering rate δ̇ [deg/s]")
 ax.set_title("Steering Rate vs Time")
 ax.grid(True)
@@ -129,7 +129,7 @@ ax = axs[1, 1]
 ax.plot(t, v, linewidth=2, label="Velocity")
 ax.axhline(MAX_VELOCITY, color="red", linestyle="--", label="Velocity limits")
 ax.axhline(MIN_VELOCITY, color="red", linestyle="--")
-ax.set_xlabel("Time [s]")
+# ax.set_xlabel("Time [s]")
 ax.set_ylabel("Velocity [m/s]")
 ax.set_title("Velocity vs Time")
 ax.grid(True)
@@ -140,7 +140,7 @@ ax.legend()
 # -------------------------
 ax = axs[2, 0]
 ax.plot(t, tracking_error, linewidth=2)
-ax.set_xlabel("Time [s]")
+# ax.set_xlabel("Time [s]")
 ax.set_ylabel("Tracking Error [m]")
 ax.set_title("Tracking Error vs Time")
 ax.grid(True)
