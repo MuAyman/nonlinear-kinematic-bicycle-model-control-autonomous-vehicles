@@ -86,7 +86,7 @@ protected:
     void generateWaypoint(double pathLength = 100.0, double pointsSpacing = 0.5)
     {
         // Output file
-        std::ofstream file("visualization/waypoints.csv");
+        std::ofstream file("data/waypoints1.csv");
         if (!file.is_open())
             std::cerr << "Error opening file!" << std::endl;
 

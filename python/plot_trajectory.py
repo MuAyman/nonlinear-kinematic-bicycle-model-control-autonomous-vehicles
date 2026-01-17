@@ -24,8 +24,8 @@ MIN_STEERING_ANGLE_DEG = MIN_STEERING_ANGLE_RAD * RAD2DEG
 # =========================
 # Load data
 # =========================
-sim = pd.read_csv("src/visualization/simulation.csv")
-wp = pd.read_csv("src/visualization/waypoints.csv")
+sim = pd.read_csv("results/Stanley.csv") # t,x_ref,y_ref,x,y,psi,delta,v,delta_dot
+wp = sim[["x_ref", "y_ref"]].rename(columns={"x_ref": "x", "y_ref": "y"}).drop_duplicates().reset_index(drop=True)
 
 required_sim_cols = {"t", "x", "y", "psi", "delta", "v", "delta_dot"}
 required_wp_cols = {"x", "y"}

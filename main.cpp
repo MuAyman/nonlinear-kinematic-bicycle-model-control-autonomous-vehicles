@@ -39,14 +39,14 @@ int main()
     StanleyController stanley_controller(k_stanley, wheelbase);
 
     // Proportional controller for steeringRate & velocity
-    double kp_steering = 2; // proportional gain for steering rate (reduced to avoid oscillations)
+    double kp_steering = 2;  // proportional gain for steering rate (reduced to avoid oscillations)
     double kp_velocity = 10; // proportional gain for velocity - higher for faster velocity response
     PController p_controller_steering(kp_steering);
     PController p_controller_velocity(kp_velocity);
 
     // Open file to save simulation data for analysis
-    std::ofstream file("visualization/simulation.csv");
-    file << "t,x,y,psi,delta,v,delta_dot\n";
+    std::ofstream file("results/Stanley.csv");
+    file << "t,x_ref,y_ref,x,y,psi,delta,v,delta_dot\n";
 
     for (int i = 0; i < total_time; ++i)
     {
@@ -86,6 +86,8 @@ int main()
 
         // Save data to file
         file << (i + 1) * dt
+             << ", " << ref_manager.getReferencePointGlobalframe().x
+             << ", " << ref_manager.getReferencePointGlobalframe().y
              << ", " << current_state.x
              << ", " << current_state.y
              << ", " << current_state.heading
