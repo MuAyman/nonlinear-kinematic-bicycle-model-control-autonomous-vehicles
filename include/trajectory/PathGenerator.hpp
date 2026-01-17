@@ -105,8 +105,8 @@ protected:
             // Generate y as combination of sines to create curves and turns
             // Wide turn: small frequency, small amplitude
             // Sharp turn: higher frequency, higher amplitude
-            double y = 50.0 * sin(0.05 * s)  // wide gentle curve
-                       + 8.0 * sin(0.2 * s); // sharper local turn
+            double y = 50.0 * sin(0.005 * s)  // wide gentle curve
+                       + 1.0 * sin(0.02 * s); // sharper local turn
 
             // path for testing a longtudinal & lateral controller
             // double y = 50.0 * sin(0.05 * s)  // wide gentle curve

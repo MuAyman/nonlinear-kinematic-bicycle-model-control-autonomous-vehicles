@@ -56,6 +56,14 @@
           "email": "s-mo_ayman@zewailcity.edu.eg"
         },
         "timeSpent": 24
+      },
+      {
+        "date": "2026-01-11T23:34:45.085Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 3
       }
     ],
     "include\\trajectory\\ReferenceManager.hpp.git": [
@@ -362,6 +370,30 @@
           "email": "s-mo_ayman@zewailcity.edu.eg"
         },
         "timeSpent": 7
+      },
+      {
+        "date": "2026-01-12T00:29:01.864Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 4
+      },
+      {
+        "date": "2026-01-12T00:29:25.373Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 24
+      },
+      {
+        "date": "2026-01-12T00:30:05.242Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 40
       }
     ],
     "src\\main.cpp.git": [
@@ -1244,6 +1276,246 @@
           "email": "s-mo_ayman@zewailcity.edu.eg"
         },
         "timeSpent": 0
+      },
+      {
+        "date": "2026-01-11T23:35:21.174Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 30
+      },
+      {
+        "date": "2026-01-11T23:35:49.886Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 29
+      },
+      {
+        "date": "2026-01-11T23:36:18.139Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 28
+      },
+      {
+        "date": "2026-01-11T23:37:07.627Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 50
+      },
+      {
+        "date": "2026-01-11T23:47:37.879Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 6
+      },
+      {
+        "date": "2026-01-11T23:48:16.098Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 38
+      },
+      {
+        "date": "2026-01-12T00:08:16.768Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 7
+      },
+      {
+        "date": "2026-01-12T00:10:32.093Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 9
+      },
+      {
+        "date": "2026-01-12T00:10:53.702Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 4
+      },
+      {
+        "date": "2026-01-12T00:11:13.595Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 4
+      },
+      {
+        "date": "2026-01-12T00:11:28.858Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 15
+      },
+      {
+        "date": "2026-01-12T00:11:44.610Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 16
+      },
+      {
+        "date": "2026-01-12T00:18:34.915Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 14
+      },
+      {
+        "date": "2026-01-12T00:19:17.899Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 43
+      },
+      {
+        "date": "2026-01-12T00:27:57.210Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 519
+      },
+      {
+        "date": "2026-01-12T00:35:25.338Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 1
+      },
+      {
+        "date": "2026-01-12T00:35:43.114Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 18
+      },
+      {
+        "date": "2026-01-12T00:48:00.418Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 4
+      },
+      {
+        "date": "2026-01-12T00:48:01.418Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 1
+      },
+      {
+        "date": "2026-01-12T00:58:09.894Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 1
+      },
+      {
+        "date": "2026-01-12T00:59:18.202Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 68
+      },
+      {
+        "date": "2026-01-12T01:35:28.669Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 2170
+      },
+      {
+        "date": "2026-01-12T01:38:31.178Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 183
+      },
+      {
+        "date": "2026-01-12T01:46:50.122Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 499
+      },
+      {
+        "date": "2026-01-12T01:48:02.859Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 73
+      },
+      {
+        "date": "2026-01-12T01:49:05.275Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 62
+      },
+      {
+        "date": "2026-01-12T05:32:41.982Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 13417
+      },
+      {
+        "date": "2026-01-12T05:33:32.199Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 50
+      },
+      {
+        "date": "2026-01-17T10:50:51.815Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 64
+      },
+      {
+        "date": "2026-01-17T10:51:53.381Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 62
       }
     ],
     "src\\trajectory\\PathGenerator.cpp.git": [
@@ -1556,6 +1828,30 @@
           "email": "s-mo_ayman@zewailcity.edu.eg"
         },
         "timeSpent": 4
+      },
+      {
+        "date": "2026-01-12T00:54:46.998Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 6
+      },
+      {
+        "date": "2026-01-12T00:56:12.434Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 9
+      },
+      {
+        "date": "2026-01-12T00:56:43.321Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 8
       }
     ],
     "src\\main.cpp": [
@@ -1678,6 +1974,22 @@
           "email": "s-mo_ayman@zewailcity.edu.eg"
         },
         "timeSpent": 1
+      },
+      {
+        "date": "2026-01-12T00:08:01.390Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 3
+      },
+      {
+        "date": "2026-01-12T00:49:01.561Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 0
       }
     ],
     "include\\trajectory\\PathGenerator.hpp": [
@@ -6682,6 +6994,22 @@
           "email": "s-mo_ayman@zewailcity.edu.eg"
         },
         "timeSpent": 14
+      },
+      {
+        "date": "2026-01-14T11:06:58.519Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 1
+      },
+      {
+        "date": "2026-01-14T11:08:33.763Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 96
       }
     ],
     ".vscode\\settings.json": [
@@ -7685,6 +8013,854 @@
       },
       {
         "date": "2026-01-11T23:17:42.470Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 13
+      }
+    ],
+    ".gitignore": [
+      {
+        "date": "2026-01-11T23:40:41.565Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 12
+      },
+      {
+        "date": "2026-01-11T23:41:05.266Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 24
+      },
+      {
+        "date": "2026-01-11T23:41:40.809Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 36
+      },
+      {
+        "date": "2026-01-11T23:41:46.552Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 6
+      },
+      {
+        "date": "2026-01-11T23:41:56.229Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 10
+      },
+      {
+        "date": "2026-01-11T23:42:04.903Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 9
+      },
+      {
+        "date": "2026-01-11T23:42:25.257Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 20
+      },
+      {
+        "date": "2026-01-11T23:43:09.098Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 44
+      },
+      {
+        "date": "2026-01-11T23:43:25.572Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 16
+      },
+      {
+        "date": "2026-01-11T23:43:42.639Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 17
+      },
+      {
+        "date": "2026-01-11T23:43:50.402Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 8
+      },
+      {
+        "date": "2026-01-11T23:43:56.769Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 6
+      },
+      {
+        "date": "2026-01-11T23:44:17.002Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 20
+      },
+      {
+        "date": "2026-01-11T23:44:24.242Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 7
+      },
+      {
+        "date": "2026-01-11T23:44:46.814Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 23
+      },
+      {
+        "date": "2026-01-11T23:46:19.553Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 8
+      },
+      {
+        "date": "2026-01-11T23:46:30.836Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 4
+      },
+      {
+        "date": "2026-01-11T23:46:38.730Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 2
+      },
+      {
+        "date": "2026-01-11T23:47:17.454Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 39
+      }
+    ],
+    "OLD\\f.py": [
+      {
+        "date": "2026-01-11T23:46:37.056Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 1
+      }
+    ],
+    "include\\control\\stanely.hpp": [
+      {
+        "date": "2026-01-11T23:49:06.148Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 1
+      }
+    ],
+    "include\\control\\stanley.hpp": [
+      {
+        "date": "2026-01-11T23:49:26.618Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 20
+      },
+      {
+        "date": "2026-01-11T23:52:02.972Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 156
+      },
+      {
+        "date": "2026-01-11T23:52:56.372Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 53
+      },
+      {
+        "date": "2026-01-11T23:56:17.652Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 84
+      },
+      {
+        "date": "2026-01-11T23:59:49.909Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 212
+      },
+      {
+        "date": "2026-01-12T00:00:38.519Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 49
+      },
+      {
+        "date": "2026-01-12T00:28:42.031Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 2
+      },
+      {
+        "date": "2026-01-12T00:42:04.252Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 0
+      },
+      {
+        "date": "2026-01-12T00:49:37.753Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 36
+      },
+      {
+        "date": "2026-01-12T00:49:38.162Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 0
+      }
+    ],
+    "src\\stanley.hpp": [
+      {
+        "date": "2026-01-12T00:07:58.565Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 2
+      }
+    ],
+    "src\\visualization\\pathPloting.py.git": [
+      {
+        "date": "2026-01-12T00:13:50.909Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 4
+      },
+      {
+        "date": "2026-01-12T00:13:56.115Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 5
+      },
+      {
+        "date": "2026-01-12T00:14:00.761Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 5
+      },
+      {
+        "date": "2026-01-12T00:16:05.747Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 4
+      },
+      {
+        "date": "2026-01-12T00:16:34.395Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 4
+      },
+      {
+        "date": "2026-01-12T00:16:38.114Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 4
+      },
+      {
+        "date": "2026-01-12T00:16:52.041Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 6
+      },
+      {
+        "date": "2026-01-12T00:18:04.036Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 1
+      },
+      {
+        "date": "2026-01-12T00:18:09.217Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 5
+      },
+      {
+        "date": "2026-01-12T00:31:38.940Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 4
+      },
+      {
+        "date": "2026-01-12T00:31:42.626Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 4
+      },
+      {
+        "date": "2026-01-12T00:31:45.575Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 3
+      },
+      {
+        "date": "2026-01-12T00:32:45.898Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 60
+      },
+      {
+        "date": "2026-01-12T00:34:48.041Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 4
+      },
+      {
+        "date": "2026-01-12T00:34:50.909Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 3
+      },
+      {
+        "date": "2026-01-12T00:34:54.159Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 3
+      },
+      {
+        "date": "2026-01-12T00:35:08.762Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 8
+      },
+      {
+        "date": "2026-01-12T00:35:20.331Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 12
+      },
+      {
+        "date": "2026-01-12T00:36:06.206Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 5
+      },
+      {
+        "date": "2026-01-12T00:36:10.593Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 4
+      },
+      {
+        "date": "2026-01-12T00:38:24.611Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 5
+      },
+      {
+        "date": "2026-01-12T00:38:28.999Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 4
+      },
+      {
+        "date": "2026-01-12T00:39:17.978Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 49
+      },
+      {
+        "date": "2026-01-12T00:44:00.128Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 6
+      },
+      {
+        "date": "2026-01-12T00:44:06.185Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 6
+      },
+      {
+        "date": "2026-01-12T00:44:39.688Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 7
+      },
+      {
+        "date": "2026-01-12T00:45:05.265Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 5
+      },
+      {
+        "date": "2026-01-12T00:45:34.695Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 8
+      },
+      {
+        "date": "2026-01-12T00:45:42.060Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 7
+      },
+      {
+        "date": "2026-01-12T00:46:04.499Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 7
+      },
+      {
+        "date": "2026-01-12T00:46:21.898Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 6
+      },
+      {
+        "date": "2026-01-12T00:46:42.708Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 7
+      },
+      {
+        "date": "2026-01-12T00:52:06.868Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 4
+      },
+      {
+        "date": "2026-01-12T00:52:46.991Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 4
+      },
+      {
+        "date": "2026-01-12T00:53:05.344Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 18
+      },
+      {
+        "date": "2026-01-12T00:53:53.775Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 6
+      },
+      {
+        "date": "2026-01-12T00:54:16.933Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 6
+      },
+      {
+        "date": "2026-01-12T00:54:34.015Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 17
+      },
+      {
+        "date": "2026-01-12T00:55:01.438Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 8
+      },
+      {
+        "date": "2026-01-12T00:55:50.757Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 49
+      },
+      {
+        "date": "2026-01-12T00:55:53.311Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 3
+      },
+      {
+        "date": "2026-01-12T00:56:21.578Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 5
+      },
+      {
+        "date": "2026-01-12T00:56:30.483Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 9
+      },
+      {
+        "date": "2026-01-12T00:56:54.152Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 5
+      },
+      {
+        "date": "2026-01-12T00:57:02.494Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 8
+      },
+      {
+        "date": "2026-01-12T00:57:16.874Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 14
+      },
+      {
+        "date": "2026-01-12T00:57:39.242Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 22
+      },
+      {
+        "date": "2026-01-14T11:13:01.613Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 21
+      },
+      {
+        "date": "2026-01-14T11:13:09.147Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 7
+      },
+      {
+        "date": "2026-01-14T11:17:16.458Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 181
+      },
+      {
+        "date": "2026-01-15T05:34:17.788Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 65821
+      },
+      {
+        "date": "2026-01-15T05:37:40.592Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 203
+      },
+      {
+        "date": "2026-01-15T05:38:50.424Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 70
+      },
+      {
+        "date": "2026-01-15T05:40:15.598Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 85
+      },
+      {
+        "date": "2026-01-17T08:35:33.656Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 183318
+      },
+      {
+        "date": "2026-01-17T09:39:53.082Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 3860
+      },
+      {
+        "date": "2026-01-17T09:40:44.037Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 51
+      },
+      {
+        "date": "2026-01-17T09:42:50.942Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 127
+      },
+      {
+        "date": "2026-01-17T09:49:15.741Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 385
+      },
+      {
+        "date": "2026-01-17T09:49:38.446Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 23
+      },
+      {
+        "date": "2026-01-17T09:50:25.648Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 47
+      },
+      {
+        "date": "2026-01-17T10:52:54.256Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 14
+      },
+      {
+        "date": "2026-01-17T10:52:56.987Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 3
+      },
+      {
+        "date": "2026-01-17T10:53:16.697Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 20
+      },
+      {
+        "date": "2026-01-17T10:53:22.646Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 6
+      },
+      {
+        "date": "2026-01-17T10:54:12.372Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 4
+      },
+      {
+        "date": "2026-01-17T10:55:09.017Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 57
+      }
+    ],
+    "src\\visualization\\animateMotion.py.git": [
+      {
+        "date": "2026-01-12T00:14:16.013Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 4
+      },
+      {
+        "date": "2026-01-12T00:15:13.500Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 2
+      },
+      {
+        "date": "2026-01-12T00:15:18.886Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 5
+      },
+      {
+        "date": "2026-01-17T10:53:46.948Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 10
+      }
+    ],
+    "src\\visualization\\PurePursuitSim.csv": [
+      {
+        "date": "2026-01-14T11:12:36.122Z",
         "user": {
           "name": "Muhammad Ayman",
           "email": "s-mo_ayman@zewailcity.edu.eg"

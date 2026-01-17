@@ -12,7 +12,8 @@
                 "-I",
                 "C:/CppLibs/include", // to include headers from C:/CppLibs
                 "-o",
-                "${fileDirname}\\${fileBasenameNoExtension}.exe"
+                "${fileDirname}\\build\\${fileBasenameNoExtension}.exe" // Saves to a 'build' folder
+                // "${fileDirname}\\${fileBasenameNoExtension}.exe"
             ],
             "options": {
                 "cwd": "${fileDirname}"
