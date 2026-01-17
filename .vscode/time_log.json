@@ -8282,6 +8282,14 @@
           "email": "s-mo_ayman@zewailcity.edu.eg"
         },
         "timeSpent": 0
+      },
+      {
+        "date": "2026-01-17T12:28:34.479Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 2
       }
     ],
     "src\\stanley.hpp": [
@@ -8898,6 +8906,52 @@
           "email": "s-mo_ayman@zewailcity.edu.eg"
         },
         "timeSpent": 13
+      }
+    ],
+    "include\\control\\stanley.hpp.git": [
+      {
+        "date": "2026-01-17T12:28:35.732Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 1
+      }
+    ],
+    "include\\controllers\\stanley.hpp": [
+      {
+        "date": "2026-01-17T12:29:06.128Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 23
+      },
+      {
+        "date": "2026-01-17T12:29:17.453Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 11
+      },
+      {
+        "date": "2026-01-17T12:29:29.913Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 13
+      }
+    ],
+    "main.cpp": [
+      {
+        "date": "2026-01-17T12:32:00.214Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 38
       }
     ]
   }
