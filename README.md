@@ -97,28 +97,44 @@ This formulation allows:
 
 ```text
 .
-├── include/
-│   ├── models/
-│   │   └── KinematicsBicycleModel.hpp
-│   ├── control/
-│   │   ├── pure_pursuit.hpp
-│   │   ├── stanley.hpp
-│   │   ├── p_controller.hpp
-│   │   └── pid_controller.hpp
-│   ├── trajectory/
-│   │   ├── PathGenerator.hpp
-│   │   └── ReferenceManager.hpp
+│
+├─ include/
+│   ├─ models/
+│   │   ├─ VehicleModel.hpp               # Base abstract class
+│   │   ├─ KinematicBicycleNonlinear.hpp
+│   │   ├─ KinematicBicycleLinearSS.hpp
+│   │   └─ KinematicBicycleNonlinearSS.hpp
 │   │
-│   └── types.hpp
+│   ├─ controllers/
+│   │   ├─ Controller.hpp                 # Base class; includes requires_velocity_profile
+│   │   ├─ PurePursuit.hpp
+│   │   ├─ Stanley.hpp
+│   │   ├─ PID.hpp                         # Generic PID, used for steering and velocity
+│   │   ├─ LQR.hpp
+│   │   ├─ MPC.hpp
+│   │   └─ NLMPC.hpp
+│   │
+│   ├─ trajectory/
+│   │   ├─ PathGenerator.hpp              # Generates smooth paths from waypoints (x, y)
+│   │   └─ ReferenceManager.hpp           # Provides reference points along the path; computes errors
+│   │
+│   └─ types.hpp                          # Structs for State, ControlInput, VehicleLimits, WayPoints, PathPoints
 │
-├── src/
-│   ├── main.cpp
+├─ python/
+│   ├─ plot_trajectory.py
+│   ├─ animate_controller.py
+│   └─ compare_controllers.py
 │
-├── plots/
-│   └── (post-processing & visualization)
-|   └── simulation.csv
+├─ results/                               # CSV files storing controller outputs
+│   ├─ PurePursuit.csv
+│   ├─ Stanley.csv
+│   └─ ...
 │
-└── README.md
+├─ data/                                  # Input waypoint sets / path points
+│   ├─ waypoints1.csv
+│   └─ ...
+│
+└─ main.cpp                               # Simulation loop, controller selection, results logging
 ```
 ---
 

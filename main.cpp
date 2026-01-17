@@ -1,11 +1,11 @@
 #include <fstream>
 #include <iostream>
-#include "../include/types.hpp"
-#include "../include/models/KinematicsBicylceModel.hpp"
-#include "../include/trajectory/ReferenceManager.hpp"
-#include "../include/control/pure_pursuit.hpp"
-#include "../include/control/p_controller.hpp"
-#include "../include/control/stanley.hpp"
+#include "include/types.hpp"
+#include "include/models/KinematicBicycleNonlinear.hpp"
+#include "include/trajectory/ReferenceManager.hpp"
+#include "include/controllers/PurePursuit.hpp"
+#include "include/controllers/p_controller.hpp"
+#include "include/controllers/Stanley.hpp"
 
 int main()
 {
