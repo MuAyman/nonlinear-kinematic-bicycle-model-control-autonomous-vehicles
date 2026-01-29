@@ -69,8 +69,8 @@ This formulation allows:
 ### ✔️ Classical & Geometric Controllers
 
 - **PID Controller**
-  - Used for velocity and steering rate control
-  - Enables smooth actuation and error correction
+  - General-purpose PID controller for various control tasks
+  - Configurable gains and time step
 
 - **Pure Pursuit**
   - Geometric path tracking using lookahead points
@@ -78,7 +78,7 @@ This formulation allows:
 
 - **Stanley Controller**
   - Uses heading error and lateral path error
-  - Extended to steering-rate control formulation
+  - Classic Stanley method adapted for steering-rate control
 
 ### 🔄 Optimization-Based Controllers
 
@@ -97,44 +97,29 @@ This formulation allows:
 
 ```text
 .
-│
-├─ include/
-│   ├─ models/
-│   │   ├─ VehicleModel.hpp               # Base abstract class
-│   │   ├─ KinematicBicycleNonlinear.hpp
-│   │   ├─ KinematicBicycleLinearSS.hpp
-│   │   └─ KinematicBicycleNonlinearSS.hpp
-│   │
-│   ├─ controllers/
-│   │   ├─ Controller.hpp                 # Base class; includes requires_velocity_profile
-│   │   ├─ PurePursuit.hpp
-│   │   ├─ Stanley.hpp
-│   │   ├─ PID.hpp                         # Generic PID, used for steering and velocity
-│   │   ├─ LQR.hpp
-│   │   ├─ MPC.hpp
-│   │   └─ NLMPC.hpp
-│   │
-│   ├─ trajectory/
-│   │   ├─ PathGenerator.hpp              # Generates smooth paths from waypoints (x, y)
-│   │   └─ ReferenceManager.hpp           # Provides reference points along the path; computes errors
-│   │
-│   └─ types.hpp                          # Structs for State, ControlInput, VehicleLimits, WayPoints, PathPoints
-│
-├─ python/
-│   ├─ plot_trajectory.py
-│   ├─ animate_controller.py
-│   └─ compare_controllers.py
-│
-├─ results/                               # CSV files storing controller outputs
-│   ├─ PurePursuit.csv
-│   ├─ Stanley.csv
-│   └─ ...
-│
-├─ data/                                  # Input waypoint sets / path points
-│   ├─ waypoints1.csv
-│   └─ ...
-│
-└─ main.cpp                               # Simulation loop, controller selection, results logging
+├── CMakeLists.txt                 # Build configuration
+├── README.md
+├── include/
+│   ├── models/
+│   │   └── KinematicsBicycleModel.hpp
+│   ├── control/
+│   │   ├── pure_pursuit.hpp       # Pure Pursuit controller
+│   │   ├── stanley.hpp            # Stanley controller (new)
+│   │   ├── p_controller.hpp       # Proportional controller
+│   │   └── pid_controller.hpp     # PID controller (new)
+│   ├── trajectory/
+│   │   ├── PathGenerator.hpp      # Path generation with splines
+│   │   └── ReferenceManager.hpp   # Reference trajectory management
+│   └── types.hpp                  # Common data structures
+├── simulations/
+│   ├── pure_pursuit_sim.cpp       # Main simulation with Pure Pursuit
+│   └── ...
+├── data/
+│   ├── waypoints0.csv
+│   ├── waypoints1.csv
+│   └── trajectories/              # Pre-computed trajectories
+├── results/                       # Simulation outputs
+└── python/                        # Visualization scripts
 ```
 ---
 
@@ -143,11 +128,19 @@ This formulation allows:
 This project is **not final** and is under active development.
 
 ### Planned and Ongoing Work
-- Full **Nonlinear MPC (NMPC)** implementation with constraints  
-- **Velocity planners** based on path curvature and lateral acceleration limits  
-- Improved **reference trajectory handling**  
-- **Linearization-based MPC** benchmarking  
+- **MPC (Linear / Decoupled)** *(in progress)*
+- **NMPC (Nonlinear MPC)** *(planned)*
+- **Velocity planners** based on path curvature and lateral acceleration limits
+- Enhanced **reference trajectory handling** (improved closest point tracking)
+- **Linearization-based MPC** benchmarking
 - Enhanced **solver integration** (CasADi / IPOPT / ACADOS)
+
+### Recent Fixes and Enhancements
+- ✅ Fixed spline interpolation issues by filtering duplicate waypoints
+- ✅ Improved reference point tracking with closest point search
+- ✅ Added PID and Stanley controllers
+- ✅ Added CMake build configuration
+- ✅ Enhanced path generation robustness
 
 ### What to Expect
 - API changes  

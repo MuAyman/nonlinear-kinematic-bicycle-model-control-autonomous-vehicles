@@ -5,8 +5,8 @@ import matplotlib.pyplot as plt
 # =========================
 # Physical limits
 # =========================
-MAX_VELOCITY = 15.0
-MIN_VELOCITY = -5.0
+MAX_VELOCITY = 15.0*3.6
+MIN_VELOCITY = -5.0*3.6
 
 MAX_STEERING_RATE_RAD = 0.5
 MIN_STEERING_RATE_RAD = -0.5
@@ -24,11 +24,11 @@ MIN_STEERING_ANGLE_DEG = MIN_STEERING_ANGLE_RAD * RAD2DEG
 # =========================
 # Load data
 # =========================
-sim = pd.read_csv("results/Stanley.csv") # t,x_ref,y_ref,x,y,psi,delta,v,delta_dot
-wp = sim[["x_ref", "y_ref"]].rename(columns={"x_ref": "x", "y_ref": "y"}).drop_duplicates().reset_index(drop=True)
+sim = pd.read_csv("results/PP_trajectory6.csv") # t,x_ref,y_ref,x,y,psi,delta,v,delta_dot
+wp = sim[["x_ref", "y_ref"]].drop_duplicates().reset_index(drop=True)
 
 required_sim_cols = {"t", "x", "y", "psi", "delta", "v", "delta_dot"}
-required_wp_cols = {"x", "y"}
+required_wp_cols = {"x_ref", "y_ref"}
 
 if not required_sim_cols.issubset(sim.columns):
     raise ValueError("simulation.csv is missing required columns")
@@ -50,8 +50,8 @@ delta_deg = sim["delta"].values * RAD2DEG
 delta_dot_deg = sim["delta_dot"].values * RAD2DEG
 v = sim["v"].values
 
-wp_x = wp["x"].values
-wp_y = wp["y"].values
+wp_x = wp["x_ref"].values
+wp_y = wp["y_ref"].values
 
 # =========================
 # Tracking error computation
@@ -126,11 +126,11 @@ ax.legend()
 # Velocity vs time
 # -------------------------
 ax = axs[1, 1]
-ax.plot(t, v, linewidth=2, label="Velocity")
+ax.plot(t, v*3.6, linewidth=2, label="Velocity")
 ax.axhline(MAX_VELOCITY, color="red", linestyle="--", label="Velocity limits")
 ax.axhline(MIN_VELOCITY, color="red", linestyle="--")
 # ax.set_xlabel("Time [s]")
-ax.set_ylabel("Velocity [m/s]")
+ax.set_ylabel("Velocity [km/h]")
 ax.set_title("Velocity vs Time")
 ax.grid(True)
 ax.legend()

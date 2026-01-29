@@ -10,16 +10,20 @@ from matplotlib.animation import FuncAnimation
 # Conversion factor from radians to degrees
 RAD2DEG = 180.0 / np.pi
 # Speed factor to control animation playback speed (2x means twice as fast)
-speed_factor = 0.01  # 2x speed
+speed_factor = 3  # 2x speed
 # To make 3x faster, set speed_factor = 3
 
 # =========================
 # Load data
 # =========================
 # Load simulation data (time, position, heading, steering angle, velocity)
-sim = pd.read_csv("src/visualization/simulation.csv")
-# Load waypoints data for path reference
-wp = pd.read_csv("src/visualization/waypoints.csv")
+sim = pd.read_csv("results/PP_trajectory6.csv") # t,x_ref,y_ref,x,y,psi,delta,v,delta_dot
+wp = sim[["x_ref", "y_ref"]].drop_duplicates().reset_index(drop=True)
+
+# required_sim_cols = {"t", "x", "y", "psi", "delta", "v", "delta_dot"}
+# required_wp_cols = {"x_ref", "y_ref"}
+# # Load waypoints data for path reference
+# # wp = pd.read_csv("src/visualization/waypoints.csv")
 
 # Extract simulation data columns into numpy arrays for faster access
 t = sim["t"].values  # Time array (s)
@@ -30,8 +34,8 @@ delta = sim["delta"].values  # Steering angle of vehicle (in radians)
 v = sim["v"].values*3.6  # vehicle velocity (km/h)
 
 # Extract waypoint coordinates
-wp_x = wp["x"].values  # X coordinates of waypoints
-wp_y = wp["y"].values  # Y coordinates of waypoints
+wp_x = wp["x_ref"].values  # X coordinates of waypoints
+wp_y = wp["y_ref"].values  # Y coordinates of waypoints
 
 # =========================
 # Figure setup
