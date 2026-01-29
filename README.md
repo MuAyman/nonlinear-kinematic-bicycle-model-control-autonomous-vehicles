@@ -7,17 +7,17 @@ This repository implements a **nonlinear kinematic bicycle model** for ground ve
 The project focuses on **practical control design**, clear software structure, and progressive controller complexity — starting from classical geometric controllers and moving toward **optimization-based control**.
 
 Implemented and evaluated controllers include:
-- PID-based control
 - Pure Pursuit
 - Stanley Controller
+- PID-based control
 - Model Predictive Control (MPC)
 - Nonlinear Model Predictive Control (NMPC)
 
 Controllers are developed in **C++**, simulated on multiple path geometries, and compared in terms of:
 - Tracking accuracy
+- Sensitivity to speed and curvature
 - Stability
 - Control smoothness
-- Sensitivity to speed and curvature
 
 ⚠️ **This repository is under active development.**  
 Some controllers and features are still experimental or partially implemented.
@@ -68,15 +68,15 @@ This formulation allows:
 
 ### ✔️ Classical & Geometric Controllers
 
-- **PID Controller**
-  - General-purpose PID controller for various control tasks
-  - Configurable gains and time step
-
 - **Pure Pursuit**
   - Geometric path tracking using lookahead points
   - Coupled with steering-rate control
 
-- **Stanley Controller**
+- **PID Controller** *(in progress)*
+  - General-purpose PID controller for various control tasks
+  - Configurable gains and time step
+
+- **Stanley Controller** *(in progress)*
   - Uses heading error and lateral path error
   - Classic Stanley method adapted for steering-rate control
 
@@ -105,20 +105,23 @@ This formulation allows:
 │   ├── control/
 │   │   ├── pure_pursuit.hpp       # Pure Pursuit controller
 │   │   ├── stanley.hpp            # Stanley controller (new)
-│   │   ├── p_controller.hpp       # Proportional controller
 │   │   └── pid_controller.hpp     # PID controller (new)
+│   │   └── ...
 │   ├── trajectory/
 │   │   ├── PathGenerator.hpp      # Path generation with splines
 │   │   └── ReferenceManager.hpp   # Reference trajectory management
-│   └── types.hpp                  # Common data structures
+│   └── types.hpp                  # Common data structures & some helper functions
 ├── simulations/
 │   ├── pure_pursuit_sim.cpp       # Main simulation with Pure Pursuit
 │   └── ...
-├── data/
-│   ├── waypoints0.csv
-│   ├── waypoints1.csv
-│   └── trajectories/              # Pre-computed trajectories
+├──  trajectories/                 # Pre-computed trajectories
+│   ├── trajectory0.csv
+│   ├── trajectory1.csv
+│   └── ...
 ├── results/                       # Simulation outputs
+│   ├── PP_trajectory0.csv         # simulated trajectory 0 with pure pursuit
+│   ├── PP_trajectory1.csv
+│   └── ...
 └── python/                        # Visualization scripts
 ```
 ---
@@ -128,6 +131,8 @@ This formulation allows:
 This project is **not final** and is under active development.
 
 ### Planned and Ongoing Work
+- **PID Controller** *(in progress)*
+- **Stanley Controller** *(in progress)*
 - **MPC (Linear / Decoupled)** *(in progress)*
 - **NMPC (Nonlinear MPC)** *(planned)*
 - **Velocity planners** based on path curvature and lateral acceleration limits
@@ -137,7 +142,7 @@ This project is **not final** and is under active development.
 
 ### Recent Fixes and Enhancements
 - ✅ Fixed spline interpolation issues by filtering duplicate waypoints
-- ✅ Improved reference point tracking with closest point search
+- ✅ Improved reference point tracking and path progress update
 - ✅ Added PID and Stanley controllers
 - ✅ Added CMake build configuration
 - ✅ Enhanced path generation robustness
