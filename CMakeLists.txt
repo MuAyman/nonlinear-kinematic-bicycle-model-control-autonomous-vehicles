@@ -9,7 +9,7 @@ include_directories(include)
 include_directories(C:/CppLibs/include)  # Adjust path as needed
 
 # Find required packages
-find_package(Eigen3 REQUIRED)  # If using Eigen for future MPC
+# find_package(Eigen3 REQUIRED)  # If using Eigen for future MPC
 
 # Source files
 set(SOURCES

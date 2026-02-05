@@ -8,6 +8,7 @@ public:
     ReferenceManager(const std::vector<Waypoint> &input_waypoints,
                      double delta_s = 0.5)
         : path_gen_(input_waypoints), delta_s_(delta_s) {};
+
     // Calculate state errors in global frame to a reference point at lookahead_distance ahead (default = 0.0) on the path
     states calculateErrorGlobalFrame(const states &current_state,
                                      double lookahead_distance = 0.0)
@@ -20,11 +21,11 @@ public:
             double ex = reference_point_globalframe.x - current_state.x;
             double ey = reference_point_globalframe.y - current_state.y;
             double distance_to_target = sqrt(ex * ex + ey * ey);
-            double s = s_; // temp s to increment to get ref_point at Ld form vehicle
-            while (distance_to_target <= lookahead_distance && !isPathCompleted())
+            double s_temp = s_; // temp s to increment to get ref_point at Ld form vehicle
+            while (distance_to_target < lookahead_distance && !isPathCompleted())
             {
-                s_ += delta_s_; // increment s to find the lookahead point
-                reference_point_globalframe = path_gen_.evaluate(s_);
+                s_temp += delta_s_; // increment s to find the lookahead point
+                reference_point_globalframe = path_gen_.evaluate(s_temp);
                 ex = reference_point_globalframe.x - current_state.x;
                 ey = reference_point_globalframe.y - current_state.y;
                 distance_to_target = sqrt(ex * ex + ey * ey);
@@ -48,7 +49,7 @@ public:
     };
 
     // Transform errors from global frame to path frame
-    states errorGlobaltoPathFrame(states &state_errors_global, const states &current_state) const
+    states errorGlobaltoPathFrame(const states &state_errors_global) const
     {
         states state_errors_path = state_errors_global;
 
@@ -65,7 +66,7 @@ public:
     }
 
     // Transform errors from global frame to vehicle frame
-    states errorGlobaltoVehicleFrame(states &state_errors_global, const states &current_state) const
+    states errorGlobaltoVehicleFrame(const states &state_errors_global, const states &current_state) const
     {
         states state_errors_vehicle = state_errors_global;
         // Extract global errors
@@ -92,10 +93,24 @@ public:
         return path_gen_.evaluate(s_ + lookahead_distance);
     }
 
+    // Get reference speed at current s_ + lookahead_distance (optional)
+    // double getReferenceSpeed(double lookahead_distance = 0.0) const
+    // {
+    //     return path_gen_.speedAt(s_ + lookahead_distance);
+    // }
+
     // Update path progress by finding s_closest to the current vehicle position
-    void updateProgress(const double ds)
+    void updateProgress(const states &current_state, const states &prev_state, double globalHeading)
     {
-        s_ += ds; // increment s_ by ds
+        // Calculate actual distance moved in global space
+        double dx = current_state.x - prev_state.x;
+        double dy = current_state.y - prev_state.y;
+        double actual_ds = sqrt(dx * dx + dy * dy);
+
+        // Rotate the displacement vector to the path frame and extract longitudinal component
+        double longitudinal_ds = cos(globalHeading) * dx + sin(globalHeading) * dy;
+
+        s_ += longitudinal_ds; // increment s_ by ds
 
         // Clamp s_ to valid range
         s_ = std::clamp(s_, 0.0, path_gen_.getPathLength());
@@ -138,9 +153,9 @@ public:
         return s_ >= (path_gen_.getPathLength());
     }
 
-    int getPathReminingDistance() const
+    double getPathReminingDistance() const
     {
-        return static_cast<int>(path_gen_.getPathLength() - s_);
+        return (path_gen_.getPathLength() - s_);
     }
 
     double getPathLength() const
@@ -148,11 +163,16 @@ public:
         return path_gen_.getPathLength();
     }
 
+    double getS() const
+    {
+        return s_;
+    }
+
 private:
     double s_ = 0.0;                       // progress along the path
     double delta_s_ = 0.5;                 // increment in s for each step
     double s_window = 5.0;                 // search window for closest point
-    vehicleSpecs specs;                          // vehicle specs
+    vehicleSpecs specs;                    // vehicle specs
     PathGenerator path_gen_;               // instance of PathGenerator
     PathPoint reference_point_globalframe; // reference point in global frame
 };

@@ -3,6 +3,7 @@
 #include <fstream>
 #include <sstream>
 #include <vector>
+#include <algorithm>
 
 // Struct to store the vehicle states
 struct states
@@ -39,7 +40,8 @@ struct vehicleLimits
     const double abs_min_velocity = 0.1;         // Minimum absolute velocity m/s to avoid division by zero
     const double abs_min_steering_rate = 0.01;   // Minimum absolute steering rate in rad/s to avoid division by zero
     const double a_lat_max = 3.0;                // Maximum centripetal acceleration 3.0 m/s2
-    const double a_long_max = 4.0;               // Maximum longitudinal acceleration 2.0 m/s2
+    const double a_long_max = 4.0;               // Maximum longitudinal acceleration 4.0 m/s2
+    const double jerk_long_max = 2.0;                 // Max longitudinal jerk comfort limit of 2.0 m/s3 
 };
 
 // Struct to store waypoints x,y in meters
@@ -132,17 +134,30 @@ void printMetrics(const SimulationMetrics &metrics)
 }
 
 // Save simulation step data to CSV
-void save_simulation_step(std::ofstream& file, double time, double ref_x, double ref_y, 
-                          const states& current, const inputs& input) 
+void save_simulation_step(std::ofstream &file, double time, double ref_x, double ref_y,
+                          const states &current, const inputs &input)
 {
-    file << time 
-         << ", " << ref_x 
-         << ", " << ref_y 
-         << ", " << current.x 
-         << ", " << current.y 
-         << ", " << current.heading 
-         << ", " << current.steeringAngle 
-         << ", " << input.velocity 
-         << ", " << input.steeringRate 
+    file << time
+         << ", " << ref_x
+         << ", " << ref_y
+         << ", " << current.x
+         << ", " << current.y
+         << ", " << current.heading
+         << ", " << current.steeringAngle
+         << ", " << input.velocity
+         << ", " << input.steeringRate
          << "\n"; // Using \n is slightly faster than endl for file I/O
+}
+
+// Update velocity with acceleration limits
+double updateVelocity(const double v_current, const double v_des, const double a_max)
+{
+    vehicleSpecs specs;
+    vehicleLimits limits;
+    double a_cmd = (v_des - v_current) / specs.dt;
+    double a = std::clamp(a_cmd, -a_max, a_max);
+    double v_cmd = v_current + a * specs.dt;
+    v_cmd = std::clamp(v_cmd, limits.min_velocity, limits.max_velocity);
+
+    return v_cmd;
 }

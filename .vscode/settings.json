@@ -1,5 +1,6 @@
 {
     "python.defaultInterpreterPath": "C:\\Users\\muayman\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
     "python.linting.enabled": true,
-    "python.linting.pylintEnabled": true
+    "python.linting.pylintEnabled": true,
+    "C_Cpp.dimInactiveRegions": false
 }

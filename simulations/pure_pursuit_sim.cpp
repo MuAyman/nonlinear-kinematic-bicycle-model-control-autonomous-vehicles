@@ -1,8 +1,9 @@
-#pragma once
+// #pragma once
 #include <iostream>
 #include "../include/types.hpp"
 #include "../include/models/KinematicsBicylceModel.hpp"
 #include "../include/trajectory/ReferenceManager.hpp"
+#include "../include/control/VelocityProfile.hpp"
 #include "../include/control/pure_pursuit.hpp"
 
 int main()
@@ -25,28 +26,33 @@ int main()
 
     // Total simulation time
     double pathLen = ref_manager.getPathLength();
-    double total_time = static_cast<int>(1.75 * pathLen / max_v / specs.dt);
+    double total_time = static_cast<int>(1.25 * pathLen / max_v / specs.dt); // adding 75% buffer time
 
     // Pure Pursuit controller
     PurePursuitController pp_controller;
+
+    // Velocity profiler
+    VelocityProfile v_profile;
 
     // Open file
     std::ofstream file("../results/PP_trajectory6.csv");
     file << "t,x_ref,y_ref,x,y,psi,delta,v,delta_dot\n";
 
-    //  Initialize simulation performance metrics
+    // Initialize simulation performance metrics
     SimulationMetrics metrics;
 
+    // Simulation loop
     for (int i = 0; i < total_time; ++i)
     {
+        states prev_state = current_state;
         // 1. Calculate Control
-        states state_errors_global = ref_manager.calculateErrorGlobalFrame(
-            current_state, pp_controller.getLd());
+        double current_ld = pp_controller.getAdaptiveLd(control_input.velocity);
+        states state_errors_global = ref_manager.calculateErrorGlobalFrame(current_state, current_ld);
 
-        control_input = pp_controller.computeControlInput(current_state,
-                                                          control_input,
-                                                          state_errors_global,
-                                                          ref_manager.getPathReminingDistance());
+        control_input.velocity = v_profile.trapezoidalProfile(control_input.velocity,
+                                                              ref_manager.getPathReminingDistance());
+
+        control_input.steeringRate = pp_controller.computeControlInput(current_state, state_errors_global);
 
         // 2. Step Model
         model.imposelimits(current_state, control_input);
@@ -56,15 +62,17 @@ int main()
         double ref_x = ref_manager.getReferencePointGlobalframe().x;
         double ref_y = ref_manager.getReferencePointGlobalframe().y;
 
-        // 4. Update Metrics
+        // 4. Update Preformance Metrics
         updateMetrics(metrics, current_state, ref_x, ref_y);
 
-        // 5. Save Data (Function Call)
+        // 5. Save Data
         save_simulation_step(file, (i + 1) * specs.dt, ref_x, ref_y, current_state, control_input);
 
         // 6. Update Progress
-        ds = control_input.velocity * specs.dt;
-        ref_manager.updateProgress(ds);
+        // ds = control_input.velocity * specs.dt;
+        // ref_manager.updateProgress(ds);
+        ref_manager.updateProgress(current_state, prev_state,
+                                   ref_manager.getReferencePointGlobalframe().heading);
     }
 
     file.close();
