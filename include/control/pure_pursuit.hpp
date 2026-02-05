@@ -11,8 +11,7 @@ public:
     double computeControlInput(const states &current_state,
                                const states &ErrorGlobalFrame) const
     {
-        // inputs control_inputs;
-        double steeringRate;
+        double steeringRate = 0.0;
         // Extract position errors
         double ex = ErrorGlobalFrame.x;
         double ey = ErrorGlobalFrame.y;
@@ -53,8 +52,8 @@ public:
 private:
     double Ld = 3.5;
     double min_Ld = 2.5;
-    double k_v = 1.8;         // Lookahead gain
-    double kp_steering = 5.0; // Reduced from 20.0 to reduce overshoot
+    double k_v = 1.8;          // Lookahead gain
+    double kp_steering = 15.0; // Reduced from 20.0 to reduce overshoot
 
     vehicleLimits limits; // vehicle limits
     vehicleSpecs specs;   // vehicle specs

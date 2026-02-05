@@ -38,7 +38,7 @@ public:
     };
 
     // Imposes physical limits on steering angle, steering rate, and velocity
-    void imposelimits(states &current_state, inputs &control_input) const
+    void imposelimits(states &current_state, inputs &control_input)
     {
         // Check and limit velocity
         if (control_input.velocity > limits.max_velocity)

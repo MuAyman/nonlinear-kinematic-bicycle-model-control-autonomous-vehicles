@@ -8,7 +8,7 @@ class VelocityProfile
 {
 public:
     // Update velocity using a trapezoidal profile with constant a_max
-    double trapezoidalProfile(const double currentVel, const double distanceRemaining) const
+    double trapezoidal(const double currentVel, const double distanceRemaining) const
     {
         // Guard: Stop if we are within 1mm and moving slower than 1cm/s
         if (distanceRemaining <= 1e-3 && currentVel <= 1e-2)
@@ -17,7 +17,6 @@ public:
         // Local aliases for readability
         const double v_max = limits.max_velocity;
         const double a_max = limits.a_long_max;
-        const double j_max = limits.jerk_long_max;
         const double dt = specs.dt;
 
         double newVel = currentVel;
@@ -49,7 +48,7 @@ public:
     }
 
     // Update velocity using an s curve profile with varying a & constant jerk
-    double SCurveProfile(const double currentVel, const double distanceRemaining)
+    double SCurve(const double currentVel, const double distanceRemaining)
     {
         // Guard: Stop if we are within 1mm and moving slower than 1cm/s
         if (distanceRemaining <= 1e-3 && currentVel <= 1e-2)
