@@ -26,7 +26,7 @@ int main()
 
     // Total simulation time
     double pathLen = ref_manager.getPathLength();
-    double total_time = static_cast<int>(1.25 * pathLen / max_v / specs.dt); // adding 75% buffer time
+    double total_time = static_cast<int>(1.75 * pathLen / max_v / specs.dt); // adding 75% buffer time
 
     // Pure Pursuit controller
     PurePursuitController pp_controller;
@@ -46,11 +46,12 @@ int main()
     {
         states prev_state = current_state;
         // 1. Calculate Control
-        double current_ld = pp_controller.getAdaptiveLd(control_input.velocity);
-        states state_errors_global = ref_manager.calculateErrorGlobalFrame(current_state, current_ld);
+        // double current_ld = pp_controller.getAdaptiveLd(control_input.velocity);
+        // states state_errors_global = ref_manager.calculateErrorGlobalFrame(current_state, current_ld);
 
-        control_input.velocity = v_profile.trapezoidalProfile(control_input.velocity,
-                                                              ref_manager.getPathReminingDistance());
+        states state_errors_global = ref_manager.calculateErrorGlobalFrame(current_state, pp_controller.getLd());
+
+        control_input.velocity = v_profile.trapezoidalProfile(control_input.velocity, ref_manager.getPathReminingDistance());
 
         control_input.steeringRate = pp_controller.computeControlInput(current_state, state_errors_global);
 
@@ -71,8 +72,7 @@ int main()
         // 6. Update Progress
         // ds = control_input.velocity * specs.dt;
         // ref_manager.updateProgress(ds);
-        ref_manager.updateProgress(current_state, prev_state,
-                                   ref_manager.getReferencePointGlobalframe().heading);
+        ref_manager.updateProgress(current_state, prev_state);
     }
 
     file.close();

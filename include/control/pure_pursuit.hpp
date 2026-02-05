@@ -38,25 +38,6 @@ public:
         return steeringRate;
     }
 
-    // Compute desired velocity based on steering angle and path remaining distance
-    // double computeVelocity(const double steering_angle, const inputs &input, const double PathReminingDistance) const
-    // {
-    //     // Reduce speed based on steering angle
-    //     double steering_ratio = std::abs(steering_angle) / limits.max_steering_angle;
-    //     double base_velocity = limits.max_velocity * (1 - steering_ratio);
-
-    //     //  If close to the end of the path, plan to stop
-    //     if (PathReminingDistance <= 50.0)
-    //     {
-    //         double decel_needed = -(input.velocity * input.velocity) / (2.0 * (50.0));
-    //         double decel_velocity = std::max(0.0, input.velocity + decel_needed * specs.dt);
-    //         double curve_velocity = updateVelocity(input.velocity, base_velocity, limits.max_acceleration);
-    //         return std::min(curve_velocity, decel_velocity);
-    //     }
-    //     else
-    //         return updateVelocity(input.velocity, base_velocity, limits.max_acceleration);
-    // }
-
     // Adaptive lookahead distance based on velocity
     double getLd() const
     {

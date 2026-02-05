@@ -13,7 +13,7 @@ include_directories(C:/CppLibs/include)  # Adjust path as needed
 
 # Source files
 set(SOURCES
-    sim/pure_pursuit_sim.cpp
+    simulations/pure_pursuit_sim.cpp
 )
 
 # Executables

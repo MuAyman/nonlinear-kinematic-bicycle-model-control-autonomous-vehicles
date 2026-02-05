@@ -7,7 +7,10 @@ from matplotlib.animation import FuncAnimation, PillowWriter
 # =========================
 # Parameters
 # =========================
+# Conversion factor from radians to degrees
 RAD2DEG = 180.0 / np.pi
+speed_factor = 3  # Animation speedup factor
+dt = 0.05  # Simulation timestep from specs.dt in seconds
 
 # =========================
 # Load data
@@ -27,9 +30,6 @@ v = sim["v"].values * 3.6  # km/h
 wp_x = wp["x_ref"].values
 wp_y = wp["y_ref"].values
 
-SAVE_EVERY_N_FRAMES = 3   # keep every 3rd frame
-GIF_FPS = 15              # visual smoothness without memory blowup
-GIF_DPI = 80              # very important
 
 # =========================
 # Cross-Tracking Error (correct computation)
@@ -45,7 +45,7 @@ for i in range(len(x)):
 # Figure setup
 # =========================
 fig = plt.figure(figsize=(16, 10))
-gs = fig.add_gridspec(2, 2, hspace=0.3, wspace=0.3)
+gs = fig.add_gridspec(1, 1, hspace=0.3, wspace=0.3)
 
 # -------------------------
 # Main motion plot
@@ -80,34 +80,34 @@ ax_main.set_ylabel("y [m]")
 # -------------------------
 # Cross-Tracking Error plot
 # -------------------------
-ax_cte = fig.add_subplot(gs[1, 0])
-ax_cte.plot(t, cte, 'k--', lw=2, alpha=0.6)
+# ax_cte = fig.add_subplot(gs[1, 0])
+# ax_cte.plot(t, cte, 'k--', lw=2, alpha=0.6)
 
-cte_line, = ax_cte.plot([], [], 'r-', lw=2)
-cte_marker, = ax_cte.plot([], [], 'ro', markersize=8)
+# cte_line, = ax_cte.plot([], [], 'r-', lw=2)
+# cte_marker, = ax_cte.plot([], [], 'ro', markersize=8)
 
-ax_cte.set_xlabel("Time [s]")
-ax_cte.set_ylabel("CTE [m]")
-ax_cte.set_title("Cross-Tracking Error vs Time")
-ax_cte.grid(True)
-ax_cte.set_xlim(0, t[-1])
-ax_cte.set_ylim(0, cte.max() * 1.2)
+# ax_cte.set_xlabel("Time [s]")
+# ax_cte.set_ylabel("CTE [m]")
+# ax_cte.set_title("Cross-Tracking Error vs Time")
+# ax_cte.grid(True)
+# ax_cte.set_xlim(0, t[-1])
+# ax_cte.set_ylim(0, cte.max() * 1.2)
 
 # -------------------------
 # Steering angle plot
 # -------------------------
-ax_delta = fig.add_subplot(gs[1, 1])
-ax_delta.plot(t, np.degrees(delta), 'k--', lw=2, alpha=0.6)
+# ax_delta = fig.add_subplot(gs[1, 1])
+# ax_delta.plot(t, np.degrees(delta), 'k--', lw=2, alpha=0.6)
 
-delta_line, = ax_delta.plot([], [], 'g-', lw=2)
-delta_marker, = ax_delta.plot([], [], 'go', markersize=8)
+# delta_line, = ax_delta.plot([], [], 'g-', lw=2)
+# delta_marker, = ax_delta.plot([], [], 'go', markersize=8)
 
-ax_delta.set_xlabel("Time [s]")
-ax_delta.set_ylabel("Steering Angle [°]")
-ax_delta.set_title("Steering (δ) vs Time")
-ax_delta.grid(True)
-ax_delta.set_xlim(0, t[-1])
-ax_delta.set_ylim(np.degrees(delta).min() - 5, np.degrees(delta).max() + 5)
+# ax_delta.set_xlabel("Time [s]")
+# ax_delta.set_ylabel("Steering Angle [°]")
+# ax_delta.set_title("Steering (δ) vs Time")
+# ax_delta.grid(True)
+# ax_delta.set_xlim(0, t[-1])
+# ax_delta.set_ylim(np.degrees(delta).min() - 5, np.degrees(delta).max() + 5)
 
 # =========================
 # Update function
@@ -125,63 +125,49 @@ def update(frame):
     velocity_text.set_text(f"v: {v[frame]:.2f} km/h")
     velocity_text.set_position((x[frame] + 3, y[frame] + 3))
 
-    cte_line.set_data(t[:frame + 1], cte[:frame + 1])
-    cte_marker.set_data([t[frame]], [cte[frame]])
+    # cte_line.set_data(t[:frame + 1], cte[:frame + 1])
+    # cte_marker.set_data([t[frame]], [cte[frame]])
 
-    delta_line.set_data(t[:frame + 1], np.degrees(delta[:frame + 1]))
-    delta_marker.set_data([t[frame]], [np.degrees(delta[frame])])
+    # delta_line.set_data(t[:frame + 1], np.degrees(delta[:frame + 1]))
+    # delta_marker.set_data([t[frame]], [np.degrees(delta[frame])])
 
     return (
         path_line,
         vehicle_point,
         angle_text,
         velocity_text,
-        cte_line,
-        cte_marker,
-        delta_line,
-        delta_marker,
+        # cte_line,
+        # cte_marker,
+        # delta_line,
+        # delta_marker,
     )
 
 # =========================
-# Run animation & save GIF
+# Run animation
 # =========================
-
-frames_to_render = range(0, len(t), SAVE_EVERY_N_FRAMES)
+frame_interval_ms = (dt / speed_factor) * 1000
+save_fps = int(1.0 / (dt / speed_factor))
 
 ani = FuncAnimation(
     fig,
     update,
-    frames=frames_to_render,
-    interval=20,
+    frames=len(t),
+    interval=frame_interval_ms,
     blit=False,
     repeat=False
 )
 
-# ani = FuncAnimation(
-#     fig,
-#     update,
-#     frames=len(t),
-#     interval=20,   # controls playback speed
-#     blit=False,
-#     repeat=False
-# )
 
-# Display the animation
+# =========================
+# Save to MP4
+# =========================
+print("Saving animation as MP4...")
+ani.save("vehicle_motion_with_velocity.mp4", 
+         writer='ffmpeg', 
+         fps=save_fps, 
+         dpi=100,
+         bitrate=1800)
+print(f"✓ Animation saved at {save_fps} FPS as MP4")
+
+# Show animation after saving
 plt.show()
-
-print("Saving GIF (memory-safe mode)...")
-
-writer = PillowWriter(
-    fps=GIF_FPS,
-    metadata=dict(artist="AV Control Simulation"),
-)
-
-ani.save(
-    "PP_vehicle_control_animation.gif",
-    writer=writer,
-    dpi=GIF_DPI,
-    savefig_kwargs={"facecolor": "white"}
-)
-
-print("GIF saved successfully.")
-plt.close(fig)

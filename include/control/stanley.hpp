@@ -41,5 +41,5 @@ private:
     double k_; // Stanley gain
     double wheelbase_;
     double kp_steering = 20.0;
-    limits limits;
+    vehicleLimits limits;
 };

@@ -30,7 +30,7 @@ struct vehicleSpecs
 struct vehicleLimits
 {
     // Define limits - physical and comfort constraints
-    const double max_velocity = 15.0;            // Maximum velocity in m/s
+    const double max_velocity = 20.0 / 3.6;            // Maximum velocity in m/s
     const double min_velocity = -5.0;            // Minimum velocity in m/s (reverse)
     const double max_acceleration = 3.0;         // Maximum acceleration in m/s²
     const double max_steering_rate = 0.5;        // Maximum steering rate in rad/s
@@ -138,14 +138,14 @@ void save_simulation_step(std::ofstream &file, double time, double ref_x, double
                           const states &current, const inputs &input)
 {
     file << time
-         << ", " << ref_x
-         << ", " << ref_y
-         << ", " << current.x
-         << ", " << current.y
-         << ", " << current.heading
-         << ", " << current.steeringAngle
-         << ", " << input.velocity
-         << ", " << input.steeringRate
+         << "," << ref_x
+         << "," << ref_y
+         << "," << current.x
+         << "," << current.y
+         << "," << current.heading
+         << "," << current.steeringAngle
+         << "," << input.velocity
+         << "," << input.steeringRate
          << "\n"; // Using \n is slightly faster than endl for file I/O
 }
 
