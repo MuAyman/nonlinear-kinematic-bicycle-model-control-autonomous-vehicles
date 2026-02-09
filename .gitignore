@@ -15,6 +15,7 @@ __pycache__/
 .idea/
 *.swp
 *.swo
+.vscode/time_log.json
 
 # OS
 .DS_Store
