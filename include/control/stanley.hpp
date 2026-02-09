@@ -6,40 +6,45 @@ class StanleyController
 {
 public:
     // Constructor
-    StanleyController(double k = 1.0, double wheelbase = 2.5) : k_(k), wheelbase_(wheelbase) {}
+    StanleyController() = default;
 
     // Compute the desired steering angle using Stanley controller
-    inputs computeControlInput(const states &current_state,
+    double computeControlInput(const states &front,
                                const inputs &input,
-                               const states &ErrorGlobalFrame)
+                               const PathPoint &path)
     {
-        inputs control_inputs;
+        double steeringRate = 0.0;
 
-        // Extract errors
-        double lateral_error = ErrorGlobalFrame.y; // lateral error in path frame
-        double heading_error = ErrorGlobalFrame.heading; // heading error
+        double dx = front.x - path.x;
+        double dy = front.y - path.y;
 
-        // Stanley formula: steering_angle = heading_error + atan(k * e_y / v)
-        double velocity = std::max(input.velocity, 0.1); // avoid division by zero
-        double steering_angle = heading_error + atan(k_ * lateral_error / velocity);
+        double nx = sin(path.heading);
+        double ny = -cos(path.heading);
+        double ey = dx * nx + dy * ny;
 
-        // Normalize steering angle to [-pi, pi]
+        double heading_error = path.heading - front.heading;
+        heading_error = atan2(sin(heading_error), cos(heading_error));
+
+        double cte = atan2(k_ * ey, input.velocity + v_0);
+
+        double steering_angle = heading_error + cte;
         steering_angle = atan2(sin(steering_angle), cos(steering_angle));
 
-        // Compute steering rate as P control on steering angle error
-        double error_steering = steering_angle - current_state.steeringAngle;
-        error_steering = atan2(sin(error_steering), cos(error_steering));
-        control_inputs.steeringRate = kp_steering * error_steering;
+        double error_steering = steering_angle - front.steeringAngle;
+        steeringRate = std::clamp(kp_steering * error_steering,
+                                  -limits.max_steering_rate,
+                                  limits.max_steering_rate);
 
-        // Velocity control (simple)
-        control_inputs.velocity = limits.max_velocity * cos(heading_error);
 
-        return control_inputs;
+
+        return steeringRate;
     }
 
 private:
-    double k_; // Stanley gain
-    double wheelbase_;
-    double kp_steering = 20.0;
-    limits limits;
+    double k_ = 0.5; // Stanley gain
+    // double wheelbase_;
+    double kp_steering = 10.0;
+    double v_0 = 0.5;
+    vehicleLimits limits;
+    vehicleSpecs specs;
 };

@@ -19,7 +19,7 @@ int main()
     // Vehicle model
     KinematicsBicycleModel model;
 
-    std::vector<Waypoint> input_waypoints = loadWaypointsFromCSV("../trajectories/trajectory6.csv");
+    std::vector<Waypoint> input_waypoints = loadWaypointsFromCSV("../trajectories/trajectory5.csv");
 
     // Reference manager for path following
     ReferenceManager ref_manager(input_waypoints);
@@ -35,7 +35,7 @@ int main()
     VelocityProfile v_profile;
 
     // Open file
-    std::ofstream file("../results/PP_trajectory6.csv");
+    std::ofstream file("../results/PP_trajectory5.csv");
     file << "t,x_ref,y_ref,x,y,psi,delta,v,delta_dot\n";
 
     //  Initialize simulation performance metrics
@@ -45,10 +45,10 @@ int main()
     {
         states prev_state = current_state;
         // 1. Calculate Control
-        double current_ld = pp_controller.getAdaptiveLd(control_input.velocity);
-        states state_errors_global = ref_manager.calculateErrorGlobalFrame(current_state, current_ld);
+        // double current_ld = pp_controller.getAdaptiveLd(control_input.velocity);
+        // states state_errors_global = ref_manager.calculateErrorGlobalFrame(current_state, current_ld);
 
-        // states state_errors_global = ref_manager.calculateErrorGlobalFrame(current_state, pp_controller.getLd());
+        states state_errors_global = ref_manager.calculateErrorGlobalFrame(current_state, pp_controller.getLd());
 
         control_input.velocity = v_profile.trapezoidal(control_input.velocity,
                                                        ref_manager.getPathReminingDistance());
@@ -58,7 +58,7 @@ int main()
 
         // 2. Step Model
         model.imposelimits(current_state, control_input);
-        current_state = model.step(current_state, control_input);
+        current_state = model.stepRear(current_state, control_input);
 
         // 3. Get Reference Data
         double ref_x = ref_manager.getReferencePointGlobalframe().x;

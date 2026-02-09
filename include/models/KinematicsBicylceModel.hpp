@@ -1,13 +1,14 @@
 #pragma once
 #include "../types.hpp"
 
+// kinematic bicycle model at rear axle
 class KinematicsBicycleModel
 {
 public:
     KinematicsBicycleModel() = default;
 
     // Advances the vehicle state by one time step dt using the nonlniear kinematic bicycle model
-    states step(const states &current_state, const inputs &control_input) const
+    states stepRear(const states &current_state, const inputs &control_input) const
     {
         states next_state;
 
@@ -23,19 +24,44 @@ public:
         steeringAngle += steeringRate * specs.dt;
 
         // Nonlinear Kinematic bicycle model (Forward Euler discretization)
-        next_state.x = x + velocity * cos(heading) * specs.dt;
-        next_state.y = y + velocity * sin(heading) * specs.dt;
-        next_state.heading = heading + velocity * tan(steeringAngle) / specs.wheelbase * specs.dt;
+        next_state.x = x + velocity * std::cos(heading) * specs.dt;
+        next_state.y = y + velocity * std::sin(heading) * specs.dt;
+        next_state.heading = heading + velocity * std::tan(steeringAngle) / specs.wheelbase * specs.dt;
         next_state.steeringAngle = steeringAngle;
 
         // // Kinematic bicycle model equations (Jacobian linearization + Forward Euler discretization)
-        // next_state.x = x + (-sin(heading) * heading + cos(heading)) * velocity * specs.dt;
-        // next_state.y = y + (cos(heading) * heading + sin(heading)) * velocity * specs.dt;
-        // next_state.heading = heading + ((steeringAngle / (wheelbase_ * pow(cos(steeringAngle), 2))) + tan(steeringAngle) / wheelbase_) * velocity * specs.dt;
+        // next_state.x = x + (-std::sin(heading) * heading + std::cos(heading)) * velocity * specs.dt;
+        // next_state.y = y + (std::cos(heading) * heading + std::sin(heading)) * velocity * specs.dt;
+        // next_state.heading = heading + ((steeringAngle / (wheelbase_ * pow(std::cos(steeringAngle), 2))) + std::tan(steeringAngle) / wheelbase_) * velocity * specs.dt;
         // next_state.steeringAngle = steeringAngle;
 
         return next_state;
     };
+
+    // Advances the vehicle state by one time step dt using the nonlniear kinematic bicycle model
+        states stepFront(const states &current_state, const inputs &control_input) const
+        {
+            states next_state;
+
+            double x = current_state.x;
+            double y = current_state.y;
+            double heading = current_state.heading;
+            double steeringAngle = current_state.steeringAngle;
+
+            double velocity = control_input.velocity;
+            double steeringRate = control_input.steeringRate;
+
+            // Update steering angle
+            steeringAngle += steeringRate * specs.dt;
+
+            // Nonlinear Kinematic bicycle model (Forward Euler discretization)
+            next_state.x = x + velocity * std::cos(heading + steeringAngle) * specs.dt;
+            next_state.y = y + velocity * std::sin(heading + steeringAngle) * specs.dt;
+            next_state.heading = heading + velocity * std::sin(steeringAngle) / specs.wheelbase * specs.dt;
+            next_state.steeringAngle = steeringAngle;
+
+            return next_state;
+        };
 
     // Imposes physical limits on steering angle, steering rate, and velocity
     void imposelimits(states &current_state, inputs &control_input)
@@ -72,5 +98,5 @@ public:
 
 private:
     vehicleLimits limits; // vehicle limits
-    vehicleSpecs specs;          // vehicle specs
+    vehicleSpecs specs;   // vehicle specs
 };

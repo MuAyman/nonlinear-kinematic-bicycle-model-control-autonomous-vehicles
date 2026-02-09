@@ -5,12 +5,14 @@ class ReferenceManager
 {
 public:
     // Constructor with provided waypoints
-    ReferenceManager(const std::vector<Waypoint> &input_waypoints,
-                     double delta_s = 0.5)
-        : path_gen_(input_waypoints), delta_s_(delta_s) {};
-    // Calculate state errors in global frame to a reference point at lookahead_distance ahead (default = 0.0) on the path
-    states calculateErrorGlobalFrame(const states &current_state,
-                                     double lookahead_distance = 0.0)
+    ReferenceManager(const std::vector<Waypoint> &input_waypoints, double delta_s = 0.5)
+        : path_gen_(input_waypoints), delta_s_(delta_s)
+    {
+        reference_point_globalframe = path_gen_.evaluate(s_);
+    };
+
+    // Calculate state errors in global frame to a reference point with possible lookahead_distance (default = 0.0)
+    states calculateErrorGlobalFrame(const states &current_state, double lookahead_distance = 0.0)
     {
         states error;
         reference_point_globalframe = path_gen_.evaluate(s_);
@@ -48,7 +50,7 @@ public:
     };
 
     // Transform errors from global frame to path frame
-    states errorGlobaltoPathFrame(states &state_errors_global, const states &current_state) const
+    states errorGlobaltoPathFrame(states &state_errors_global) const
     {
         states state_errors_path = state_errors_global;
 
@@ -99,6 +101,8 @@ public:
 
         // Clamp s_ to valid range
         s_ = std::clamp(s_, 0.0, path_gen_.getPathLength());
+
+        reference_point_globalframe = path_gen_.evaluate(s_);
     }
 
     void updateProgress(const states &current_state, const states &prev_state)
@@ -106,7 +110,7 @@ public:
         // Calculate actual distance moved in global space
         double dx = current_state.x - prev_state.x;
         double dy = current_state.y - prev_state.y;
-        double globalHeading = path_gen_.evaluate(s_).heading;
+        double globalHeading = reference_point_globalframe.heading;
 
         // Rotate the displacement vector to the path frame and extract longitudinal component
         double longitudinal_ds = cos(globalHeading) * dx + sin(globalHeading) * dy;
@@ -115,6 +119,8 @@ public:
 
         // Clamp s_ to valid range
         s_ = std::clamp(s_, 0.0, path_gen_.getPathLength());
+
+        reference_point_globalframe = path_gen_.evaluate(s_);
     }
 
     // Check if the path is completed
@@ -134,9 +140,9 @@ public:
     }
 
 private:
-    double s_ = 0.0;                       // progress along the path
-    double delta_s_ = 0.5;                 // increment in s for each step
-    double s_window = 5.0;                 // search window for closest point
+    double s_ = 0.0;       // progress along the path
+    double delta_s_ = 0.5; // increment in s for each step
+    // double s_window = 5.0;                 // search window for closest point
     vehicleSpecs specs;                    // vehicle specs
     PathGenerator path_gen_;               // instance of PathGenerator
     PathPoint reference_point_globalframe; // reference point in global frame

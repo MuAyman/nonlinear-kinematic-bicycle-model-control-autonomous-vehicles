@@ -15,7 +15,7 @@ dt = 0.05  # Simulation timestep from specs.dt in seconds
 # =========================
 # Load data
 # =========================
-sim = pd.read_csv("results/PP_trajectory6.csv")  # t,x_ref,y_ref,x,y,psi,delta,v,delta_dot
+sim = pd.read_csv("results/Stanley_trajectory1.csv")  # t,x_ref,y_ref,x,y,psi,delta,v,delta_dot
 wp = sim[["x_ref", "y_ref"]].drop_duplicates().reset_index(drop=True)
 
 # Extract simulation data
@@ -156,7 +156,8 @@ ani = FuncAnimation(
     blit=False,
     repeat=False
 )
-
+#  Show animation after saving
+plt.show()
 
 # =========================
 # Save to MP4
@@ -169,5 +170,4 @@ ani.save("vehicle_motion_with_velocity.mp4",
          bitrate=1800)
 print(f"✓ Animation saved at {save_fps} FPS as MP4")
 
-# Show animation after saving
-plt.show()
+#

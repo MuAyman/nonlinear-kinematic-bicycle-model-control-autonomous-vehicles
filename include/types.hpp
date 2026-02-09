@@ -29,7 +29,7 @@ struct vehicleSpecs
 struct vehicleLimits
 {
     // Define limits - physical and comfort constraints
-    const double max_velocity = 50 / 3.6;        // Maximum velocity 50 km/h
+    const double max_velocity = 5; //50 / 3.6;        // Maximum velocity 50 km/h
     const double min_velocity = -5.0;            // Minimum velocity in m/s (reverse)
     const double max_acceleration = 3.0;         // Maximum acceleration in m/s²
     const double max_steering_rate = 0.5;        // Maximum steering rate in rad/s

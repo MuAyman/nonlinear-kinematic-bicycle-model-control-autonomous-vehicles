@@ -1,0 +1,83 @@
+// #pragma once
+#include <iostream>
+#include "../include/types.hpp"
+#include "../include/models/KinematicsBicylceModel.hpp"
+#include "../include/trajectory/ReferenceManager.hpp"
+#include "../include/control/VelocityProfile.hpp"
+#include "../include/control/stanley.hpp"
+
+int main()
+{
+    // Simulation parameters
+    states current_state;               // x, y, heading, steeringAngle
+    inputs control_input;               // velocity, steeringRate
+    vehicleLimits limits;               // vehicle limits
+    vehicleSpecs specs;                 // vehicle specs
+    double max_v = limits.max_velocity; // desired cruising speed in m/s
+    double ds = max_v * specs.dt;       // path increment for reference manager
+
+    // Vehicle model
+    KinematicsBicycleModel model;
+
+    std::vector<Waypoint> input_waypoints = loadWaypointsFromCSV("../trajectories/trajectory5.csv");
+
+    // Reference manager for path following
+    ReferenceManager ref_manager(input_waypoints);
+
+    // Total simulation time
+    double pathLen = ref_manager.getPathLength();
+    double steps = 1.25 * pathLen / max_v / specs.dt; // adding 10% buffer time
+
+    // Pure Pursuit controller
+    StanleyController stanley;
+
+    // Velocity profiler
+    VelocityProfile v_profile;
+
+    // Open file
+    std::ofstream file("../results/Stanley_trajectory5.csv");
+    file << "t,x_ref,y_ref,x,y,psi,delta,v,delta_dot\n";
+
+    //  Initialize simulation performance metrics
+    SimulationMetrics metrics;
+
+    for (int i = 0; i < steps; ++i)
+    {
+        states prev_state = current_state;
+        // 1. Calculate Control
+        // states state_errors_global = ref_manager.calculateErrorGlobalFrame(current_state);
+
+        control_input.velocity = v_profile.trapezoidal(control_input.velocity,
+                                                       ref_manager.getPathReminingDistance());
+
+        // states front_state = model.rear2front(current_state);
+        PathPoint ref_point = ref_manager.getReferencePointGlobalframe();
+        control_input.steeringRate = stanley.computeControlInput(current_state, control_input,
+                                                                 ref_point);
+
+        // 2. Step Model
+        model.imposelimits(current_state, control_input);
+        current_state = model.stepFront(current_state, control_input);
+
+        // 3. Get Reference Data
+        double ref_x = ref_manager.getReferencePointGlobalframe().x;
+        double ref_y = ref_manager.getReferencePointGlobalframe().y;
+
+        // 4. Update Metrics
+        updateMetrics(metrics, current_state, ref_x, ref_y);
+
+        // 5. Save Data (Function Call)
+        save_simulation_step(file, (i + 1) * specs.dt, ref_x, ref_y, current_state, control_input);
+
+        // 6. Update Progress
+        ref_manager.updateProgress(current_state, prev_state);
+        prev_state = current_state;
+    }
+
+    file.close();
+
+    // Print simulation performance metrics
+    printMetrics(metrics);
+
+    return 0;
+}

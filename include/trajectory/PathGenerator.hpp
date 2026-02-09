@@ -42,11 +42,11 @@ public:
     } 
     // Evaluates x(s), y(s), heading ψ(s), and curvature κ(s) at given s_query. 
     PathPoint evaluate(double s_query) const 
-    { 
+    {
         // Clamp s to the valid path interval 
         double s = std::clamp(s_query, 0.0, s_end_); 
  
-        PathPoint p; 
+        PathPoint p;
  
         // Position from splines 
         p.x = spline_x_(s); 
