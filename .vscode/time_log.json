@@ -20655,6 +20655,26 @@
         },
         "timeSpent": 10
       }
+    ],
+    ".vscode\\time_log.json.git": [
+      {
+        "date": "2026-02-14T09:07:13.122Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 2
+      }
+    ],
+    ".gitignore": [
+      {
+        "date": "2026-02-14T09:07:50.633Z",
+        "user": {
+          "name": "Muhammad Ayman",
+          "email": "s-mo_ayman@zewailcity.edu.eg"
+        },
+        "timeSpent": 0
+      }
     ]
   }
 }
