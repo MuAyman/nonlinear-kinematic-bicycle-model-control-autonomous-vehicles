@@ -5,11 +5,11 @@ import matplotlib.pyplot as plt
 # =========================
 # Controller settings
 # =========================
-CTRL1_NAME = "Stanley Controller"
-CTRL2_NAME = "Pure Pursuit Controller"
+CTRL1_NAME = "Stanley"
+CTRL2_NAME = "Pure Pursuit"
 
-CTRL1_CSV = "results/Stanley/Stanley_trajectory5.csv"
-CTRL2_CSV = "results/PurePursuit/PP_trajectory5.csv"
+CTRL1_CSV = "results/Stanley_trajectory5.csv"
+CTRL2_CSV = "results/PP_trajectory5.csv"
 
 # =========================
 # Physical limits

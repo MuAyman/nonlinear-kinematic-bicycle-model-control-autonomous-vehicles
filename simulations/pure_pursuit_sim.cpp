@@ -26,7 +26,7 @@ int main()
 
     // Total simulation time
     double pathLen = ref_manager.getPathLength();
-    double total_time = static_cast<int>(1.1 * pathLen / max_v / specs.dt); // adding 10% buffer time
+    double total_time = 1.3 * pathLen / max_v / specs.dt; // adding 10% buffer time
 
     // Pure Pursuit controller
     PurePursuitController pp_controller;
